@@ -9,25 +9,26 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+
 app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'register.html'));
+    res.render('register')
 })
 
 app.get('/post', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'post.html'))
+    res.render('post')
 })
 
 app.get('/gallery', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'gallery.html'))
-})
-
-app.get('/api/postGallery', (req, res) => {
     const data = fs.readFileSync('./images.json', 'utf-8')
     const images = JSON.parse(data)
-    res.status(200).json(images)
+    res.render('gallery', {
+        images: images
+    })
 })
 
-app.post('/api/register', (req, res) => {
+app.post('/register', (req, res) => {
     const user = req.body
 
     let users = []
@@ -47,7 +48,7 @@ app.post('/api/register', (req, res) => {
     res.redirect('/post')
 })
 
-app.post('/api/post', (req, res) => {
+app.post('/post', (req, res) => {
     const newImage = req.body
 
     let images = []

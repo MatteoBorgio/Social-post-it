@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+</head>
+<body onload="getPosts()">
+    <h3>Galleria</h3>
+    <div>
+        <% if (images.length > 0) { %>
+
+            <% images.forEach(function(image) { %>
+
+                <div>
+                    <img src="<%= image.link %>" alt="<%= image.name %>">
+                    <p>Titolo: <%= image.name %></p>
+                    <p>Descrizione: <%= image.description %></p>
+                </div>
+
+            <% }) %>
+
+        <% } else { %>
+            <p>Non ci sono ancora foto nella galleria!</p>
+        <% } %>
+    </div>
+</body>
+</html>
