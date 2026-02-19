@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+</head>
+<body onload="getPosts()">
+    <h3>Galleria</h3>
+    <ul id="images"></ul>
+    <script>
+        async function getPosts() {
+            const response = await fetch('/api/postGallery')
+            const images = await response.json()
+            renderPosts(images)
+        }
+        function renderPosts(images) {
+            const out = document.getElementById("images")
+            images.forEach(item => {
+                out.innerHTML += `<li>
+                            Titolo: ${item.name} -
+                            Descrizione: ${item.description} -
+                            Url: ${item.link}
+                        </li>`
+            })
+        }
+    </script>
+</body>
+</html>
