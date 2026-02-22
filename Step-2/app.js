@@ -60,6 +60,7 @@ app.post('/post', (req, res) => {
     if (!Array.isArray(images)) {
         images = []
     }
+
     images.push(newImage)
 
     fs.writeFileSync('./images.json', JSON.stringify(images, null, 2))
