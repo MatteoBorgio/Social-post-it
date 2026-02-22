@@ -1,19 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Social post it - Step 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea un nuovo post</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<h3>Social post it - Step 2</h3>
-<form action="/post" method="POST">
-    <label for="name">Nome</label>
-    <input type="text" name="name" id="name" placeholder="Inserisci il nome dell'immagine" required>
-    <label for="description">Descrizione</label>
-    <input type="text" name="description" id="description" placeholder="Inserisci la descrizione dell'immagine" required>
-    <label for="link">Link dell'immagine</label>
-    <input type="text" name="link" id="link" placeholder="Inserisci il link dell'immagine" required>
-    <button type="submit">Invia</button>
-</form>
+<body class="bg-light">
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="card-title text-center mb-4 text-primary">Crea un nuovo post</h3>
+                    <form action="/post" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-bold">Nome</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Es. Tramonto in montagna" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label fw-bold">Descrizione</label>
+                            <input type="text" class="form-control" name="description" id="description" placeholder="Aggiungi una breve descrizione" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="link" class="form-label fw-bold">Link dell'immagine</label>
+                            <input type="url" class="form-control" name="link" id="link" placeholder="https://..." required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Invia</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
