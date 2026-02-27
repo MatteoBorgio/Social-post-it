@@ -26,18 +26,40 @@ app.get('/gallery', (req, res) => {
     })
 })
 
+app.get('/post/:id', (req, res) => {
+    const { id } = req.params;
+
+    if (!id) {
+        return res.status(401).json({
+            success: false,
+            message: "Id non trovato"
+        })
+    }
+
+    const data = fs.readFileSync('./images.json', 'utf-8');
+
+    const posts = JSON.parse(data);
+    const post = posts.find(p => p.id === Number(id));
+
+    res.render('specificPost', {
+        post: post
+    });
+});
+
 app.post('/register', (req, res) => {
     const user = req.body
 
     let users = []
 
     if (fs.existsSync('./users.json')) {
-        const data = fs.readFileSync('./users.json', null, 2)
+        const data = fs.readFileSync('./users.json', 'utf-8')
         users = JSON.parse(data)
     }
     if(!Array.isArray(users)) {
         users = []
     }
+
+    user.id = Date.now();
 
     users.push(user)
 
@@ -58,6 +80,8 @@ app.post('/post', (req, res) => {
     if (!Array.isArray(images)) {
         images = []
     }
+
+    newImage.id = Date.now();
 
     images.push(newImage)
 

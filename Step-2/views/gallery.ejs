@@ -14,10 +14,15 @@
             <% images.forEach(function(image) { %>
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">
-                        <img src="<%= image.link %>"
-                             class="card-img-top object-fit-cover"
-                             alt="<%= image.name %>"
-                             style="height: 250px;">
+                        <a href="/post/<%= image.id %>">
+                            <img src="<%= image.link %>"
+                                 class="card-img-top object-fit-cover"
+                                 alt="<%= image.name %>"
+                                 style="height: 250px; transition: opacity 0.3s;"
+                                 onmouseover="this.style.opacity='0.8'"
+                                 onmouseout="this.style.opacity='1'"
+                            >
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title fw-bold"><%= image.name %></h5>
                             <p class="card-text text-muted"><%= image.description %></p>
